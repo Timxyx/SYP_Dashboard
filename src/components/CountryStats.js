@@ -7,17 +7,20 @@ function CountryStats(props) {
     const [selected, setSelected] = useState({});
     const [imgLink, setImgLink] = useState('');
     
-    props.link && useEffect(() => {
-        const fetchApi = async () => {
-            const res = await fetch(props.link);
-            const resJSON = await res.json();
-            const arr = await resJSON._links["ua:scores"];
-            const imgLink = await resJSON._links["ua:images"];
-            
-            setData(arr);
-            setImgLink(imgLink);
-        };
-        fetchApi();
+     useEffect(() => {
+       if(props.link){
+
+         const fetchApi = async () => {
+           const res = await fetch(props.link);
+           const resJSON = await res.json();
+           const arr = await resJSON._links["ua:scores"];
+           const imgLink = await resJSON._links["ua:images"];
+           
+           setData(arr);
+           setImgLink(imgLink);
+          };
+          fetchApi();
+        }
     }, [])
       props.func(imgLink);
     //console.log(data);
