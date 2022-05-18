@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className='bg-bg-dark h-full'>
   <Component {...pageProps} />
-    APP
+    
     <Landing />
-    </>
+    </div>
   )
 }
 

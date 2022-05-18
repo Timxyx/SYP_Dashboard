@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import CountryStats from './CountryStats';
+import HeroImage from './HeroImage';
 
 export default function Landing() {
  const [data, setData] = useState([]);
  const [selected, setSelected] = useState({});
  const [chosen , setChosen] = useState('');
+ const [imgLink, setImgLink] = useState('');
  
 
   useEffect(() => {
@@ -22,28 +24,35 @@ export default function Landing() {
 
 
   function handleSelect(e){
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setChosen(e.target.value);
     setSelected(e.target.value)
 
   }
   //console.log(chosen)
-  
+    const pull_data = (img) => {
+    setImgLink(img); // SETS DATA FROM CHILD 
+  }
   return (
-    <div className='flex flex-col items-center px-96'>
-      Choose one of the urban areas in our database.
-     <select value={selected} onChange={handleSelect}>       
+    <>
+    <div className='w-full flex justify-center relative items-center h-64'>
+          <HeroImage link={imgLink} />
+
+     <select value={selected} onChange={handleSelect} className="z-20 text-white h-10 mb-20 font-size-3 text-center bg-bg-darker border-2 border-grey-">       
      {data.map((item) =>{
        return(
-           <option key={item.name} value={item.href}>{item.name}</option>
+         <option className='text-black' key={item.name} value={item.href}>{item.name}</option>
          )
-     })}
+        })}
     </select>
+        </div>
+    <div className='flex flex-col items-center px-96'>
     <div className='w-full'>
       
-        {chosen && <CountryStats key={chosen} link={chosen} />}
+        {chosen && <CountryStats func={pull_data} key={chosen} link={chosen} />}
 
     </div>
     </div>
+    </>
   )
 }

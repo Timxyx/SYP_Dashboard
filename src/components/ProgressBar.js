@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 
 const ProgressBar = (props) => {
   const { bgcolor, completed } = props;
-  let prog = 0;
 
+  const [prog, setProg] = useState(0);
   const containerStyles = {
     height: 20,
     width: '100%',
@@ -11,14 +12,16 @@ const ProgressBar = (props) => {
     borderRadius: 50,
   }
 
-  const fillerStyles = {
+  let fillerStyles = {
     height: '100%',
     width: `${prog}%`,
     backgroundColor: bgcolor,
     borderRadius: 'inherit',
     textAlign: 'right',
     transition: 'width 1s ease-in-out',
+
   }
+  
 
   const labelStyles = {
     padding: 5,
@@ -26,7 +29,10 @@ const ProgressBar = (props) => {
     fontWeight: 'bold'
   }
 
- 
+  useEffect(() => {
+    setProg(completed)
+  }, [])
+  
   
 
   return (

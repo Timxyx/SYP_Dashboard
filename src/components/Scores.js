@@ -16,15 +16,18 @@ function Scores(props) {
         props.link && fetchApi();
     }, [props.link])
     
-    console.log(data);
+    //console.log(data);
   return (
     <div>
-        <div className='w-full'>Scores</div>
         {data.map((item)=>{
             return(
-                <div>
-                    <div>{item.name}</div>
-                    <ProgressBar bgcolor={item.color} completed={Math.floor(item.score_out_of_10*10)} />
+                <div key={item.name}>
+                    <div className='grid grid-cols-12 items-center mb-1'>
+                        <span className='col-span-3 text-right pr-1 text-white'>{item.name}</span>
+                        <span className='col-span-9'>
+                        <ProgressBar bgcolor={item.color} completed={Math.floor(item.score_out_of_10*10)} />
+                        </span>
+                    </div>
                 </div>
             )
         })}
