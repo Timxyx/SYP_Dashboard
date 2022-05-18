@@ -4,7 +4,8 @@ import CountryStats from './CountryStats';
 export default function Landing() {
  const [data, setData] = useState([]);
  const [selected, setSelected] = useState({});
- const [chosen , setChosen] = useState([]);
+ const [chosen , setChosen] = useState('');
+ 
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -20,23 +21,17 @@ export default function Landing() {
   }, [])
 
 
-
-  function consolelog(){
-    data.forEach((item) =>{
-      console.log(item.name);
-
-    })
-  }
   function handleSelect(e){
-    setSelected(e.target.value);
     console.log(e.target.value);
-    chosen.push(e.target.value);
+    setChosen(e.target.value);
+    setSelected(e.target.value)
+
   }
+  //console.log(chosen)
   
   return (
-    <div className='flex flex-col items-center w-full'>
-      Chose one of the urban areas in our database.
-     <button onClick={consolelog}>hier</button>
+    <div className='flex flex-col items-center px-96'>
+      Choose one of the urban areas in our database.
      <select value={selected} onChange={handleSelect}>       
      {data.map((item) =>{
        return(
@@ -44,12 +39,10 @@ export default function Landing() {
          )
      })}
     </select>
-    <div>
-      {chosen.map((country) =>{
-        return(
-          <CountryStats key={country} link={country} />
-        )
-      })}
+    <div className='w-full'>
+      
+        {chosen && <CountryStats key={chosen} link={chosen} />}
+
     </div>
     </div>
   )
