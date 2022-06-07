@@ -2,11 +2,15 @@ import React, {useEffect, useState} from 'react';
 import CountryStats from './CountryStats';
 import HeroImage from './HeroImage';
 
+// AIzaSyCOCxMa8GnHsSSYSXqB1cBuOla_bjRjMQM
+
+
 export default function Landing() {
  const [data, setData] = useState([]);
  const [selected, setSelected] = useState({});
  const [chosen , setChosen] = useState('');
  const [imgLink, setImgLink] = useState('');
+ const [test, setTest] = useState([]);
  
 
   useEffect(() => {
@@ -14,9 +18,10 @@ export default function Landing() {
     const res = await fetch("https://api.teleport.org/api/urban_areas/");
     const resJSON = await res.json();
     const arr = await resJSON._links["ua:item"];
+    const test = await resJSON._links;
+    setTest(test);
     setData(arr);
       };
-
 
     fetchApi();
     
@@ -24,12 +29,12 @@ export default function Landing() {
 
 
   function handleSelect(e){
-    //console.log(e.target.value);
+    //console.log("yoo",e.target.value);
     setChosen(e.target.value);
     setSelected(e.target.value)
 
   }
-  //console.log(chosen)
+  console.log(test);
     const pull_data = (img) => {
     setImgLink(img); // SETS DATA FROM CHILD 
   }
@@ -52,6 +57,7 @@ export default function Landing() {
         {chosen && <CountryStats func={pull_data} key={chosen} link={chosen} />}
 
     </div>
+   
     </div>
     </>
   )

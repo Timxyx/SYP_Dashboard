@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Scores from './Scores'
 import MDetails from './MDetails'
+import View from './View'
 
 function CountryStats(props) {
 
@@ -8,6 +9,8 @@ function CountryStats(props) {
     const [selected, setSelected] = useState({});
     const [imgLink, setImgLink] = useState('');
     const [detailsLink, setDetailsLink] = useState([]);
+    const [lat, setLat] = useState([46.9171876]);
+    const [long, setLong] = useState([17.8951832]);
     
      useEffect(() => {
        if(props.link){
@@ -35,6 +38,9 @@ function CountryStats(props) {
         </div>
         <div className='w-full'>
           <MDetails link={detailsLink.href} />
+        </div>
+        <div>
+          <View lat={46.9171876} long={17.8951832} />
         </div>
         </div>
   )
