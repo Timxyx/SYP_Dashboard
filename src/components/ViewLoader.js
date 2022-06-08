@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react';
 import View from './View'
 
-function viewLoader(props) {
+function ViewLoader(props) {
     const [data, setData] = useState([]);
     const [selected, setSelected] = useState({});
 
@@ -25,4 +25,4 @@ function viewLoader(props) {
   )
 }
 
-export default viewLoader
+export default ViewLoader
