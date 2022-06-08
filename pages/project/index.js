@@ -4,7 +4,7 @@ import Landing from '../../src/components/Landing'
 function index() {
   return (
     <div>
-      <div className="">
+      <div className="bg-bg-dark">
         Project
         <Landing />
 

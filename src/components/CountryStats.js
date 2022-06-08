@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Scores from './Scores'
 import MDetails from './MDetails'
-import View from './View'
+import ViewLoader from './ViewLoader'
 
 function CountryStats(props) {
 
@@ -9,6 +9,7 @@ function CountryStats(props) {
     const [selected, setSelected] = useState({});
     const [imgLink, setImgLink] = useState('');
     const [detailsLink, setDetailsLink] = useState([]);
+    const [locationLink, setLocationLink] = useState([]);
     const [lat, setLat] = useState([46.9171876]);
     const [long, setLong] = useState([17.8951832]);
     
@@ -21,7 +22,9 @@ function CountryStats(props) {
            const arr = await resJSON._links["ua:scores"];
            const imgLink = await resJSON._links["ua:images"];
            const detailsLink = await resJSON._links["ua:details"];
-           
+           const latLongLink = await resJSON._links["ua:identifying-city"];
+           console.log("json",resJSON);
+           setLocationLink(latLongLink);
            setData(arr);
            setDetailsLink(detailsLink);
            setImgLink(imgLink);
@@ -39,8 +42,8 @@ function CountryStats(props) {
         <div className='w-full'>
           <MDetails link={detailsLink.href} />
         </div>
-        <div>
-          <View lat={46.9171876} long={17.8951832} />
+        <div className='bg-bg-dark w-full'>
+          <ViewLoader link={locationLink.href}/>
         </div>
         </div>
   )

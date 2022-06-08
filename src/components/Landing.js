@@ -51,7 +51,7 @@ export default function Landing() {
         })}
     </select>
         </div>
-    <div className='flex flex-col items-center px-96'>
+    <div className='flex flex-col items-center px-96 bg-bg-dark'>
     <div className='w-full'>
       
         {chosen && <CountryStats func={pull_data} key={chosen} link={chosen} />}

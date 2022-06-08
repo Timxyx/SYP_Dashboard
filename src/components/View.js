@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactStreetview from 'react-streetview';
 
-const gooogleMapsApiKey = process.env.KEY;
+const googleMapsApiKey = process.env.NEXT_PUBLIC_KEY;
 
 
 export class View extends React.Component {
@@ -10,7 +10,7 @@ export class View extends React.Component {
 	render() {
 		const { lat, long } = this.props;
 		// see https://developers.google.com/maps/documentation/javascript
-
+		
 		// see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanoramaOptions
 		const streetViewPanoramaOptions = {
 			position: {lat: lat, lng: long},
